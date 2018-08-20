@@ -31,9 +31,21 @@ public class MovieStore {
 
     }
 
-    public List<Movie> findByDirector(String shwimmer) {
+    public List<Movie> findByDirector(String dirctor) {
 
-        return null;
+        List<Movie> result = new LinkedList<Movie>();
+
+        for (Movie movie : movies) {
+
+            if (movie.director().equals(dirctor)) {
+
+                result.add(movie);
+
+            }
+
+        }
+
+        return result;
 
     }
 }
