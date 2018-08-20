@@ -30,4 +30,10 @@ public class MovieStore {
         movies.add(movie);
 
     }
+
+    public List<Movie> findByDirector(String shwimmer) {
+
+        return null;
+
+    }
 }
