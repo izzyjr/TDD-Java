@@ -1,7 +1,5 @@
 package tdd.discount;
 
-import java.util.Arrays;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,10 +16,10 @@ public class DiscountApplierTest {
 	@Test
 	public void discountForMacAndIphoneTogether() {
 		
-		Item mac = new Item("MACBOOK", 1, 100);
-		Item iPhone = new Item("IPHONE", 1, 50);
-		
-		Basket basket = new Basket(Arrays.asList(mac, iPhone));
+		Basket basket = new BasketBuilder()
+				.w("MACBOOK", 100)
+				.w("IPHONE", 50)
+				.build();
 		
 		applier.apply(basket);
 		
@@ -34,10 +32,10 @@ public class DiscountApplierTest {
 	@Test
 	public void discountForNotebookAndWindowsPhoneTogether() {
 		
-		Item notebook = new Item("NOTEBOOK", 1, 100);
-		Item wphone = new Item("WINDOWS PHONE", 1, 50);
-		
-		Basket basket = new Basket(Arrays.asList(notebook, wphone));
+		Basket basket = new BasketBuilder()
+				.w("NOTEBOOK", 100)
+				.w("WINDOWS PHONE", 50)
+				.build();
 		
 		applier.apply(basket);
 		
@@ -50,9 +48,9 @@ public class DiscountApplierTest {
 	@Test
 	public void discountForXbox() {
 		
-		Item xbox = new Item("XBOX", 1, 100);
-		
-		Basket basket = new Basket(Arrays.asList(xbox));
+		Basket basket = new BasketBuilder()
+				.w("XBOX", 100)
+				.build();
 		
 		applier.apply(basket);
 		
@@ -65,9 +63,9 @@ public class DiscountApplierTest {
 	@Test
 	public void discountForTwoItemsLesserThanAThousand() {
 		
-		Item refrigerator = new Item("REFRIGERATOR", 1, 100);
-		
-		Basket basket = new Basket(Arrays.asList(refrigerator));
+		Basket basket = new BasketBuilder()
+				.w("REFRIGERATOR", 100)
+				.build();
 		
 		applier.apply(basket);
 		
@@ -80,11 +78,11 @@ public class DiscountApplierTest {
 	@Test
 	public void discountForThreeOrFourProducts() {
 		
-		Item refrigerator = new Item("REFRIGERATOR", 1, 2000);
-		Item dishWasher = new Item("DISH WASHER", 1, 500);
-		Item trashCan = new Item("TRASH CAN", 1, 2500);
-		
-		Basket basket = new Basket(Arrays.asList(refrigerator, dishWasher, trashCan));
+		Basket basket = new BasketBuilder()
+				.w("REFRIGERATOR", 2000)
+				.w("DISH WASHER", 500)
+				.w("TRASH CAN", 2500)
+				.build();
 		
 		applier.apply(basket);
 		
@@ -97,14 +95,14 @@ public class DiscountApplierTest {
 	@Test
 	public void discountForMoreThanFiveItems() {
 		
-		Item refrigerator = new Item("REFRIGERATOR", 1, 2000);
-		Item dishWasher = new Item("DISH WASHER", 1, 500);
-		Item trashCan = new Item("TRASH CAN", 1, 2500);
-		Item bed = new Item("BED", 1, 400);
-		Item toilet = new Item("TOILET", 1, 200);
-		
-		Basket basket = new Basket(Arrays.asList(refrigerator, dishWasher, trashCan, bed, toilet));
-		
+		Basket basket = new BasketBuilder()
+			.w("REFRIGERATOR", 2000)
+			.w("DISH WASHER", 500)
+			.w("TRASH CAN", 2500)
+			.w("BED", 400)
+			.w("TOILET", 200)
+			.build();
+				
 		applier.apply(basket);
 		
 		Double expected  = (2000 + 500 + 2500 + 400 + 200) * 0.94;
