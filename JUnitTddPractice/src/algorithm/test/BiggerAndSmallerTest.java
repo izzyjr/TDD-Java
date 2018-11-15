@@ -2,57 +2,65 @@ package algorithm.test;
 
 import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Before;
 
 public class BiggerAndSmallerTest {
 	
+	private BiggerAndSmaller algorithm;
+	
+	@Before
+	public void setUp() {
+		algorithm = new BiggerAndSmaller();
+		System.out.println("setUp()");
+	}
+	
+	private int[] nums(int... ns) {
+		return ns;
+	}
+	
+	private void assertNumbers(int smallest, int biggest) {
+		Assert.assertEquals(biggest, algorithm.getBigger());
+		Assert.assertEquals(smallest, algorithm.getSmaller());
+	}
+	
 	@Test
 	public void numbersInIncreasingOrder() {
-		BiggerAndSmaller algorithm = new BiggerAndSmaller();
 		
-		algorithm.find(new int[] {2, 3, 4});
+		algorithm.find(nums(2, 3, 4));
 		
-		Assert.assertEquals(4, algorithm.getBigger());
-		Assert.assertEquals(2, algorithm.getSmaller());
+		assertNumbers(2, 4);
 	}
 	
 	@Test
 	public void numbersInDecreasingOrder() {
-		BiggerAndSmaller algorithm = new BiggerAndSmaller();
+
+		algorithm.find(nums(4, 3, 2));
 		
-		algorithm.find(new int[] {4, 3, 2});
-		
-		Assert.assertEquals(4, algorithm.getBigger());
-		Assert.assertEquals(2, algorithm.getSmaller());
+		assertNumbers(2, 4);
 	}
 	
 	@Test
 	public void numbersInAnyOrder() {
-		BiggerAndSmaller algorithm = new BiggerAndSmaller();
+
+		algorithm.find(nums(19, 5, 2, 17, 15, 10));
 		
-		algorithm.find(new int[] {19, 5, 2, 17, 15, 10});
-		
-		Assert.assertEquals(19, algorithm.getBigger());
-		Assert.assertEquals(2, algorithm.getSmaller());
+		assertNumbers(2, 19);
 	}
 	
 	@Test
 	public void onlyOneNumber() {
-		BiggerAndSmaller algorithm = new BiggerAndSmaller();
+
+		algorithm.find(nums(16));
 		
-		algorithm.find(new int[] {16});
-		
-		Assert.assertEquals(16, algorithm.getBigger());
-		Assert.assertEquals(16, algorithm.getSmaller());
+		assertNumbers(16, 16);
 	}
 	
 	@Test
 	public void repeatedNumbers() {
-		BiggerAndSmaller algorithm = new BiggerAndSmaller();
+
+		algorithm.find(nums(16, 2, 16, 3, 4, 5, 15, 16));
 		
-		algorithm.find(new int[] {16, 2, 16, 3, 4, 5, 15, 16});
-		
-		Assert.assertEquals(16, algorithm.getBigger());
-		Assert.assertEquals(2, algorithm.getSmaller());
+		assertNumbers(2, 16);
 	}
 
 }
