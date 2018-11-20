@@ -1,25 +1,29 @@
 package tdd.roman;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class RomanNumeralsTest {
+
+	private RomanNumeral roman;
 	
-	// I - 1
-	// II - 2
-	// V - 5
-	// VII - 7
-	// XVI - 16
-	// IV - 4
-	// XIV - 14
-	
-	//I - 1
-	@Test 
-	public void aSingleNumber() {
-		RomanNumeral roman = new RomanNumeral();
-		int number = roman.convert("I");
-		
-		Assert.assertEquals(1, number);
+	@Before
+	public void setUp() {
+		 roman = new RomanNumeral();
 	}
 
+	@Test 
+	public void aSingleNumber() {
+		Assert.assertEquals(1, roman.convert("I"));
+		Assert.assertEquals(5, roman.convert("V"));
+		Assert.assertEquals(10, roman.convert("X"));
+	}
+	
+	@Test 
+	public void aComposedNumber() {
+		Assert.assertEquals(2, roman.convert("II"));
+		Assert.assertEquals(6, roman.convert("VI"));
+	}
+	
 }
