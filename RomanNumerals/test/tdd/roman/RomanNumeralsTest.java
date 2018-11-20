@@ -24,6 +24,13 @@ public class RomanNumeralsTest {
 	public void aComposedNumber() {
 		Assert.assertEquals(2, roman.convert("II"));
 		Assert.assertEquals(6, roman.convert("VI"));
+		Assert.assertEquals(16, roman.convert("XVI"));
+	}
+	
+	@Test 
+	public void composedNumberWithRegression() {
+		Assert.assertEquals(4, roman.convert("IV"));
+		Assert.assertEquals(14, roman.convert("XIV"));
 	}
 	
 }
